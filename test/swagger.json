@@ -1,0 +1,719 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Boss Api 接口文档",
+    "contact": { "name": "Boss Team", "url": "", "email": "" }
+  },
+  "basePath": "/DMPK.ServicePortal.WebApi",
+  "paths": {
+    "/api/Banners": {
+      "get": {
+        "tags": ["Banner"],
+        "summary": "获取横幅广告列表",
+        "description": "获取所有横幅广告列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "GetAllItems",
+        "consumes": [],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/BannerModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/Banners/Query": {
+      "post": {
+        "tags": ["Banner"],
+        "summary": "获取横幅广告列表",
+        "description": "获取所有横幅广告列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "AllItemsQuery",
+        "consumes": ["multipart/form-data"],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "formData",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "formData",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "formData",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "formData",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "formData",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/CategoryModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/Categories": {
+      "get": {
+        "tags": ["Category"],
+        "summary": "获取分类列表",
+        "description": "获取所有分类列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "GetAllItems",
+        "consumes": [],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/CategoryModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/Categories/Query": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "获取分类列表",
+        "description": "获取所有分类列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "AllItemsQuery",
+        "consumes": ["multipart/form-data"],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "formData",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "formData",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "formData",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "formData",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "formData",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/CategoryModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/OperationHistory/{objectType}": {
+      "get": {
+        "tags": ["OperationHistory"],
+        "summary": "获取操作历史列表",
+        "description": "获取所有操作历史列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "GetAllOperationHistories",
+        "consumes": [],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "objectType",
+            "in": "path",
+            "description": "业务对象",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/OperationHistoryModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/OperationHistory/{objectType}/Query": {
+      "post": {
+        "tags": ["OperationHistory"],
+        "summary": "获取操作历史列表",
+        "description": "获取所有操作历史列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "AllOperationHistoriesQuery",
+        "consumes": [],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "objectType",
+            "in": "path",
+            "description": "业务对象",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/OperationHistoryModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pictures": {
+      "get": {
+        "tags": ["Picture"],
+        "summary": "获取图片列表",
+        "description": "获取所有图片列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "GetAllItems",
+        "consumes": [],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/PictureModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pictures/Query": {
+      "post": {
+        "tags": ["Picture"],
+        "summary": "获取图片列表",
+        "description": "获取所有图片列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "AllItemsQuery",
+        "consumes": ["multipart/form-data"],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "formData",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "formData",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "formData",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "formData",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "formData",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/PictureModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pictures/{pictureId}/Content": {
+      "get": {
+        "tags": ["Picture"],
+        "summary": "下载图片",
+        "operationId": "GetItem",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "pictureId",
+            "in": "path",
+            "description": "图片ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "Success" } }
+      }
+    },
+    "/api/SearchKeywords": {
+      "get": {
+        "tags": ["SearchKeyword"],
+        "summary": "获取搜索关键字列表",
+        "description": "获取所有搜索关键字列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "GetAllItems",
+        "consumes": [],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/SearchKeywordModel" }
+            }
+          }
+        }
+      }
+    },
+    "/api/SearchKeywords/Query": {
+      "post": {
+        "tags": ["SearchKeyword"],
+        "summary": "获取搜索关键字列表",
+        "description": "获取所有搜索关键字列表, Response Header \"X-Total-Count\" 表示总记录数",
+        "operationId": "AllItemsQuery",
+        "consumes": ["multipart/form-data"],
+        "produces": ["text/plain", "application/json", "text/json"],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "formData",
+            "description": "用于排序,如sort=-Name,+StartDate表示按Name降序然后按StartDate升序排列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "formData",
+            "description": "用于分页,表示跳过的记录数,如skip=3表示从第四条记录开始读取",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "formData",
+            "description": "用于分页,表示返回的最大行数,如take=5表示每页最大显示5条记录",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "fields",
+            "in": "formData",
+            "description": "用于过滤返回字段,如fields=Name,StartDate表示只返回Name和StartDate列",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "in": "formData",
+            "description": "筛选表达式, 如(Name=aaa|Name*=aaa)&amp;Name^!=aaa、 Extensions.Abbr%20No%2e=1、 Name NOT IN[aaa,bbb]&amp;Name IS NOT NULL、StartDate&lt;=2018-3-2等(字段名小写开头表示忽略大小写, 字段名和值含有特殊字符需要encodeURI)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/SearchKeywordModel" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "BannerModel": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "pictureId": { "type": "string" },
+        "text": { "type": "string" },
+        "link": { "type": "string" },
+        "altText": { "type": "string" }
+      }
+    },
+    "CategoryModel": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "parentCategoryId": { "type": "string" },
+        "pictureId": { "type": "string" },
+        "showOnHomepage": { "type": "boolean" },
+        "includeInTopMenu": { "type": "boolean" },
+        "published": { "type": "boolean" },
+        "deleted": { "type": "boolean" },
+        "displayOrder": { "format": "int32", "type": "integer" },
+        "createdDate": { "format": "date-time", "type": "string" },
+        "updatedDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "OperationHistoryModel": {
+      "type": "object",
+      "properties": {
+        "objectType": { "type": "string" },
+        "objectId": { "format": "uuid", "type": "string" },
+        "objectName": { "type": "string" },
+        "changeType": { "type": "string" },
+        "fieldName": { "type": "string" },
+        "originalValue": { "type": "string" },
+        "newValue": { "type": "string" },
+        "comments": { "type": "string" },
+        "modifiedById": { "format": "uuid", "type": "string" },
+        "modifiedBy": { "type": "string" },
+        "modifiedDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "PictureModel": {
+      "type": "object",
+      "properties": {
+        "pictureId": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "filename": { "type": "string" },
+        "altAttribute": { "type": "string" },
+        "titleAttribute": { "type": "string" }
+      }
+    },
+    "SearchKeywordModel": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "keyword": { "type": "string" },
+        "count": { "format": "int32", "type": "integer" }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "请输入带有Bearer的Token"
+    },
+    "TenantId": {
+      "name": "TenantId",
+      "in": "query",
+      "type": "apiKey",
+      "description": "请输入TenantId"
+    }
+  },
+  "security": [{ "Bearer": [] }, { "TenantId": [] }],
+  "tags": [
+    { "name": "Banner", "description": "横幅广告相关Api" },
+    { "name": "Category", "description": "分类相关Api" },
+    { "name": "OperationHistory", "description": "操作历史相关Api" },
+    { "name": "Picture", "description": "图片相关Api" },
+    { "name": "SearchKeyword", "description": "搜索关键字相关Api" }
+  ]
+}
