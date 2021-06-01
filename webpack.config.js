@@ -2,8 +2,9 @@
 const path = require('path');
 
 module.exports = {
+    target: "node",
     mode: 'development',
-    entry: './src/babel.ts',
+    entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
@@ -28,5 +29,8 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.json'],
+        fallback:{
+            fs: false
+        }
     },
 };
